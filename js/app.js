@@ -10,7 +10,19 @@ let tasks = [];
 eventListeners();
 
 function eventListeners () {
+    // Cuando el usuario agrega una nueva Task
     formulario.addEventListener('submit', agregarTasks);
+
+    // Cuando el documento esta listo
+    document.addEventListener('DOMContentLoaded', () => {
+        tasks = JSON.parse(localStorage.getItem('tasks')) || [];
+        
+        console.log(tasks);
+
+        crearHTML();
+
+    });
+
 }
 
 
@@ -89,8 +101,16 @@ function crearHTML() {
         });
 
     }
+
+    sincronizarStorage();
 }
 
+//Agrega las Tasks actuales a LocalStorage
+
+function sincronizarStorage() {
+    localStorage.setItem('tasks',JSON.stringify(tasks));
+
+}
 
 // Limpiar el HTML
 function LimpiarHTML() {
