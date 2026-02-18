@@ -105,12 +105,28 @@ function crearHTML() {
 
     if(tasks.length > 0) {
         tasks.forEach(task => {
+            // Agregar un boton de eliminar
+            const btnEliminar = document.createElement('a');
+            btnEliminar.classList.add('borrar-task');
+            btnEliminar.innerHTML = 'X';
+
+            // Añadir la función de eliminar
+            btnEliminar.onclick = () => {
+                borrarTask(task.id);
+            }
+
+
+
+
+
             // Crear el HTML
-            
             const li = document.createElement('li');
 
             //añadir el texto
             li.innerText = task.task;
+
+            //Asignar el botón
+            li.appendChild(btnEliminar);
 
             // insertarlo en el html
             listaTasks.appendChild(li); // Mientras exista un appendChild no se elimina el código previo.
@@ -127,6 +143,13 @@ function crearHTML() {
 function sincronizarStorage() {
     localStorage.setItem('tasks',JSON.stringify(tasks));
 
+}
+
+// Elimina una tarea
+function borrarTask(id) {
+    tasks = tasks.filter( task => task.id !== id);
+
+    crearHTML();
 }
 
 // Limpiar el HTML
