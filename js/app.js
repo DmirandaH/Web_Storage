@@ -82,6 +82,10 @@ function mostrarError (error) {
 }*/
 function mostrarError(error) {
 
+    // if evita que cuando el usuario presione varias veces en el botón dee agregar se creen multiples alertas.
+
+    if(document.querySelector('.error')) return;
+
     const mensajeError = document.createElement('p');
     mensajeError.textContent = error;
     mensajeError.classList.add('error');
