@@ -3,7 +3,9 @@ h1, h2 {
 }
 
 #contenido {
+   
     margin-top: 40px;
+
 }
 .borrar-task,
 .borrar-task:hover {
@@ -12,6 +14,8 @@ h1, h2 {
     color: red;
     font-weight: bold;
 }
+
+
 
 .error {
     background-color: red;

@@ -39,7 +39,7 @@ function agregarTasks(e) {
 if(task === '') {
     mostrarError ('Un nuevo mensaje no puede ir vacio');
 
-    return; // evita que se ejecuten más lineas de código
+    return; // evita que se ejecuten más líneas de código
 }
 
 const taskObj = {
@@ -62,6 +62,7 @@ formulario.reset();
 
 // Mostrar Mensaje de error,es una función que se puede reeutilizar en otro proyecto.
 
+/*
 function mostrarError (error) {
     const mensajeError = document.createElement('p');
     mensajeError.textContent = error;
@@ -78,7 +79,23 @@ function mostrarError (error) {
 
     }, 3000);
 
+}*/
+function mostrarError(error) {
+
+    const mensajeError = document.createElement('p');
+    mensajeError.textContent = error;
+    mensajeError.classList.add('error');
+
+    // Insertar dentro del formulario 
+    formulario.appendChild(mensajeError);
+
+    setTimeout(() => {
+        mensajeError.remove();
+    }, 3000);
 }
+
+
+
 
 // Muestra un listado de las Tasks
 
