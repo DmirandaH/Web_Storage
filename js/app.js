@@ -30,14 +30,15 @@ function eventListeners () {
 // Funciones
 function agregarTasks(e) {
     e.preventDefault();
+    console.log('submit detectado');
 
   /// Textarea donde el usurio escribe
 
-  const task = document.querySelector('#task').value;
+  const task = document.querySelector('#task').value.trim();
 
 // validación del formulario
 if(task === '') {
-    mostrarError ('Un nuevo mensaje no puede ir vacio');
+    mostrarMensaje ('Una nueva tarea no puede ir vacía', 'error');
 
     return; // evita que se ejecuten más líneas de código
 }
@@ -50,6 +51,8 @@ const taskObj = {
 // Añadir al arreglo las tasks
 
 tasks=[...tasks, taskObj];
+
+mostrarMensaje('Tarea agregada correctamente', 'exito');
 
 // Una vez agregado vamos a crear el HTML
 crearHTML();
@@ -80,11 +83,19 @@ function mostrarError (error) {
     }, 3000);
 
 }*/
+
+
+// Mostrar Mensaje de error,es una función que se puede reeutilizar en otro proyecto.
 function mostrarError(error) {
 
-    // if evita que cuando el usuario presione varias veces en el botón dee agregar se creen multiples alertas.
+    // if evita que cuando el usuario presione varias veces en el botón de agregar se creen multiples alertas.
 
-    if(document.querySelector('.error')) return;
+    //if(document.querySelector('.error')) return;
+
+    const alertaPrevia = document.querySelector('.error');
+    if (alertaPrevia) {
+        alertaPrevia.remove();
+    }
 
     const mensajeError = document.createElement('p');
     mensajeError.textContent = error;
@@ -98,6 +109,54 @@ function mostrarError(error) {
     }, 3000);
 }
 
+
+// Funcion que resalta la alerta que se ha creado de forma exitosa
+function mostrarMensaje(mensaje, tipo) {
+
+    // Eliminar cualquier alerta existente (error o éxito)
+    const alertaPrevia = document.querySelector('.error, .exito');
+    if (alertaPrevia) {
+        alertaPrevia.remove();
+    }
+
+    const alerta = document.createElement('p');
+    alerta.textContent = mensaje;
+
+    if (tipo === 'error') {
+        alerta.classList.add('error');     
+    } else if (tipo === 'exito') {
+        alerta.classList.add('exito');
+    }
+
+    formulario.appendChild(alerta);
+
+    setTimeout(() => {
+        alerta.remove();
+    }, 2000);
+}
+
+
+/*function mostrarMensaje(mensaje, tipo) {
+    const alerta = document.createElement('p');
+    alerta.textContent = mensaje;
+
+    if (tipo === 'error') {
+        alerta.classList.add('error');     
+    } else if (tipo === 'exito') {
+        alerta.classList.add('exito');
+    }
+
+    formulario.appendChild(alerta);
+    /*const contenido = document.querySelector('#contenido');
+    contenido.appendChild(alerta);
+
+    setTimeout(() => {
+        alerta.remove();
+    }, 2000);
+
+
+}
+*/
 
 
 
@@ -120,14 +179,12 @@ function crearHTML() {
             }
 
 
-
-
-
             // Crear el HTML
             const li = document.createElement('li');
 
             //añadir el texto
             li.innerText = task.task;
+            
 
             //Asignar el botón
             li.appendChild(btnEliminar);

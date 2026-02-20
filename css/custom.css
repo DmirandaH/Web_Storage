@@ -20,10 +20,36 @@ h1, h2 {
 .error {
     background-color: red;
     text-align: center;
-    padding: 10px;
+    padding: 5px;
     text-transform: uppercase;
     font-weight: bold;
     max-width: 400px;
     margin: 0 auto;
     color: white;
+}
+
+
+.exito {
+    background-color: #c8f7c5;
+    text-align: center;
+    padding: 5px;
+    text-transform: uppercase;
+    font-weight: bold;
+    max-width: 400px;
+    margin: 10px auto;
+    color: #1e4620;
+    border: 1px solid #7ad67a;
+}
+
+
+
+.error {
+    background-color: #e74c3c;
+    color: white;
+}
+
+.exito {
+    background-color: #c8f7c5;
+    color: #1e4620;
+    border: 1px solid #7ad67a;
 }
