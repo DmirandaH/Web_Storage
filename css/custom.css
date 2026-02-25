@@ -53,3 +53,13 @@ h1, h2 {
     color: #1e4620;
     border: 1px solid #7ad67a;
 }
+
+.eliminado {
+    background-color: #FFE0B2;
+    color: #E65100;
+    text-align: center;
+    padding: 10px;
+    margin-top: 10px;
+    font-weight: bold;
+    border-radius: 4px;
+}

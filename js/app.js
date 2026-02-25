@@ -114,7 +114,7 @@ function mostrarError(error) {
 function mostrarMensaje(mensaje, tipo) {
 
     // Eliminar cualquier alerta existente (error o éxito)
-    const alertaPrevia = document.querySelector('.error, .exito');
+    const alertaPrevia = document.querySelector('.error, .exito, .eliminado');
     if (alertaPrevia) {
         alertaPrevia.remove();
     }
@@ -126,6 +126,8 @@ function mostrarMensaje(mensaje, tipo) {
         alerta.classList.add('error');     
     } else if (tipo === 'exito') {
         alerta.classList.add('exito');
+    } else if (tipo === 'eliminado') {
+        alerta.classList.add('eliminado');
     }
 
     formulario.appendChild(alerta);
@@ -210,7 +212,11 @@ function sincronizarStorage() {
 function borrarTask(id) {
     tasks = tasks.filter( task => task.id !== id);
 
-    crearHTML();
+     crearHTML();
+
+    mostrarMensaje('Tarea elimininda correctamente', 'eliminado');
+
+   
 }
 
 // Limpiar el HTML
